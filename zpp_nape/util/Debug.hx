@@ -170,6 +170,7 @@ import nape.dynamics.CollisionArbiter;
 import nape.util.Debug;
 import nape.util.BitmapDebug;
 import nape.util.ShapeDebug;
+import nape.util.GraphicsDebug;
 #if(flash9||openfl||nme||heaps)#if nape_swc@:keep #end
 class ZPP_Debug{
     public static var internal=false;
@@ -177,7 +178,7 @@ class ZPP_Debug{
     public var isbmp:Bool=false;
     #if flash10 public var d_bmp:ZPP_BitmapDebug=null;
     #end
-    public var d_shape:ZPP_ShapeDebug=null;
+    public var d_shape:ZPP_GraphicsDebug=null;
     public var bg_r:Float=0.0;
     public var bg_g:Float=0.0;
     public var bg_b:Float=0.0;
@@ -427,15 +428,12 @@ class ZPP_Debug{
     }
 }
 #if nape_swc@:keep #end
-class ZPP_ShapeDebug extends ZPP_Debug{
-    public var outer_zn:ShapeDebug=null;
-    public var shape:flash.display.Shape=null;
-    public var graphics:flash.display.Graphics=null;
-    public function new(width:Int,height:Int){
+class ZPP_GraphicsDebug extends ZPP_Debug{
+    public var outer_zn:GraphicsDebug=null;
+    public var graphics:h2d.Graphics=null;
+    public function new(g:h2d.Graphics,width:Int,height:Int){
         super(width,height);
-        shape=new flash.display.Shape();
-        shape.scrollRect=new flash.geom.Rectangle(0,0,width,height);
-        graphics=shape.graphics;
+        graphics=g;
         isbmp=false;
         d_shape=this;
     }

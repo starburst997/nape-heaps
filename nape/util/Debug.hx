@@ -1080,7 +1080,8 @@ class Debug{
     static public var BROADCLASH=0;
     static public var BROADTOTAL=0;
     #end
-    #if(flash9||openfl||nme)/**
+    #if(flash9||openfl||nme||heaps)
+    #if !heaps/**
      * Create a flash/openfl||nme Shape representing the given Body.
      *
      * @param body The body to create display Shape for.
@@ -1123,6 +1124,7 @@ class Debug{
         }
         return ret;
     }
+    #end
     /**
      * @private
      */
@@ -1215,7 +1217,6 @@ class Debug{
      * @private
      */
     public function new(){
-        trace('YAY!');
         #if(!NAPE_RELEASE_BUILD)
         if(!ZPP_Debug.internal)throw "Error: Cannot instantiate Debug derp! Use ShapeDebug, or BitmapDebug on flash10+";
         #end
@@ -1230,6 +1231,7 @@ class Debug{
         cullingEnabled=false;
         colour=null;
     }
+    #if !heaps
     /**
      * The flash/openfl||nme native display object representing debug draw.
      * <br/><br/>
@@ -1245,6 +1247,7 @@ class Debug{
         #else return zpp_inner.d_shape.shape;
         #end
     }
+    #end
     /**
      * When true, objects outside the debug draw screen will not be drawn.
      * <br/><br/>

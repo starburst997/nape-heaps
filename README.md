@@ -30,81 +30,81 @@ import nape.util.GraphicsDebug;
  */
 class Main extends App {
 
-	var pg : Graphics;
-	var spr : Sprite;
-	var tf : Text;
+    var pg : Graphics;
+    var spr : Sprite;
+    var tf : Text;
 
-	// Nape
-	var space : Space;
-	var debug : GraphicsDebug;
+    // Nape
+    var space : Space;
+    var debug : GraphicsDebug;
 
-	// Init
-	override function init() {
-		trace('Init!');
+    // Init
+    override function init() {
+        trace('Init!');
 
-		var w = s2d.width;
+        var w = s2d.width;
         var h = s2d.height;
-		
-		var g = new Graphics(s2d);
-		debug = new GraphicsDebug(g, w, h, 0x000000);
-		debug.thickness = 1;
-		debug.drawConstraints = true;
+        
+        var g = new Graphics(s2d);
+        debug = new GraphicsDebug(g, w, h, 0x000000);
+        debug.thickness = 1;
+        debug.drawConstraints = true;
 
-		// Setup a simple nape world
-		space = new Space(Vec2.weak(0, 600));
+        // Setup a simple nape world
+        space = new Space(Vec2.weak(0, 600));
 
-		// From basic simulation
-		var floor = new Body(BodyType.STATIC);
+        // From basic simulation
+        var floor = new Body(BodyType.STATIC);
         floor.shapes.add(new Polygon(Polygon.rect(50, (h - 50), (w - 100), 1)));
         floor.space = space;
 
-		for (i in 0...16) {
+        for (i in 0...16) {
             var box = new Body(BodyType.DYNAMIC);
             box.shapes.add(new Polygon(Polygon.box(16, 32)));
             box.position.setxy((w / 2), ((h - 50) - 32 * (i + 0.5)));
             box.space = space;
         }
 
-		var ball = new Body(BodyType.DYNAMIC);
+        var ball = new Body(BodyType.DYNAMIC);
         ball.shapes.add(new Circle(50));
         ball.position.setxy(50, h / 2);
         ball.angularVel = 10;
         ball.space = space;
 
-		// Set main event handler
-		Stage.getInstance().addEventTarget(onEvent);
-	}
+        // Set main event handler
+        Stage.getInstance().addEventTarget(onEvent);
+    }
 
-	// if we the window has been resized
-	override function onResize() {
+    // if we the window has been resized
+    override function onResize() {
 
-	}
+    }
 
-	// Handle inputs
-	function onEvent( e : Event ) {
-		switch( e.kind ) {
-			case EKeyDown: switch( e.keyCode ) {
-				case Key.ESCAPE: hxd.System.exit();
-				default:
-			}
-			default:
-		}
-	}
+    // Handle inputs
+    function onEvent( e : Event ) {
+        switch( e.kind ) {
+            case EKeyDown: switch( e.keyCode ) {
+                case Key.ESCAPE: hxd.System.exit();
+                default:
+            }
+            default:
+        }
+    }
 
-	// Main loop
-	override function update( dt : Float ) {
-		space.step(1 / 60);
+    // Main loop
+    override function update( dt : Float ) {
+        space.step(1 / 60);
 
-		debug.clear();
+        debug.clear();
         debug.draw(space);
         debug.flush();
-	}
+    }
 
-	// Entry point
-	static function main() {
-		hxd.Res.initEmbed();
-		new Main();
-	}
+    // Entry point
+    static function main() {
+        hxd.Res.initEmbed();
+        new Main();
+    }
 
 }
 ```

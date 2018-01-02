@@ -1,6 +1,6 @@
 # nape-heaps
 
-Adding nape's debug draw to heaps, basically just a quick hack right now
+Adding [nape](https://github.com/deltaluca/nape)'s debug draw to [heaps](https://github.com/HeapsIO/heaps), basically just a quick hack right now
 
 Example:
 ```haxe

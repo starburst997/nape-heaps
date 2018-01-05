@@ -188,7 +188,7 @@ class GraphicsDebug extends Debug{
      * Thickness to draw lines with.
      * @default 0.1
      */
-    public var thickness:Float=0.0;
+    public var thickness:Float=1.0;
     /**
      * Construct new ShapeDebug with given viewport size and backgruond.
      * <br/><br/>
@@ -223,7 +223,7 @@ class GraphicsDebug extends Debug{
         zpp_inner=zpp_inner_zn;
         zpp_inner.outer=this;
         this.bgColour=bgColour;
-        this.thickness=0.1;
+        this.thickness=1.0;
     }
     /**
      * @inheritDoc
